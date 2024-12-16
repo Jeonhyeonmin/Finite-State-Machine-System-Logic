@@ -39,6 +39,11 @@ public class ZombieController : MonoBehaviour
         }
     }
 
+    public Transform SearchEnemy()
+    {
+        return target;
+    }
+
     public Transform FindNextWaypoint()
     {
         targetWaypoint = null;

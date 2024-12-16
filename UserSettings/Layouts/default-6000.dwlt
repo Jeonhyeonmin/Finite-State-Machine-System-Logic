@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 77
+  controlID: 90
   draggingID: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -297,8 +297,8 @@ MonoBehaviour:
     y: 0
     width: 736
     height: 248
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -575,7 +575,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Synty/AnimationBaseLocomotion/Samples/Materials
+    - Assets/Scripts/FSM_Zombie
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -585,17 +585,17 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 79
   m_LastFolders:
-  - Assets/Synty/AnimationBaseLocomotion/Samples/Materials
+  - Assets/Scripts/FSM_Zombie
   m_LastFoldersGridSize: 79
   m_LastProjectPath: C:\Users\HyeonminJeon\Documents\GitHub\Finite State Machine
     System Logic
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 294}
-    m_SelectedIDs: e8100200
-    m_LastClickedID: 135400
-    m_ExpandedIDs: 0000000006b0000024b200002cb2000030b20000ce3501001c9b0100f610020000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 223}
+    m_SelectedIDs: 90b50000
+    m_LastClickedID: 46480
+    m_ExpandedIDs: 0000000002b3000038b500003cb500006cb500006eb5000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -624,7 +624,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000006b00000
+    m_ExpandedIDs: 0000000002b30000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -678,7 +678,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 62}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 79
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 190
@@ -1459,9 +1459,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 0.77314603, y: -3.6096072, z: -6.635123}
+    m_Target: {x: -1.3094776, y: -2.0962296, z: -5.9069734}
     speed: 2
-    m_Value: {x: 0.77314603, y: -3.6096072, z: -6.635123}
+    m_Value: {x: -1.3094776, y: -2.0962296, z: -5.9069734}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1507,9 +1507,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.018090345, y: 0.96316576, z: -0.2603652, w: 0.06759254}
+    m_Target: {x: -0.009597841, y: 0.97956663, z: -0.19651124, w: -0.04598312}
     speed: 2
-    m_Value: {x: 0.018188233, y: 0.962594, z: -0.26176065, w: 0.06755271}
+    m_Value: {x: -0.009596047, y: 0.9793836, z: -0.19647451, w: -0.045974527}
   m_Size:
     m_Target: 5.556192
     speed: 2
@@ -1583,9 +1583,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e010fdff
-      m_LastClickedID: -192288
-      m_ExpandedIDs: 9224fdfff6fafffffea90000
+      m_SelectedIDs: 98b50000
+      m_LastClickedID: 0
+      m_ExpandedIDs: f6faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
