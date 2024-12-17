@@ -11,7 +11,7 @@ public class MoveToWaypoint : State<ZombieController>
 
     public override void OnInitialzed()
     {
-        anim = context.GetComponent<Animator>();
+        anim = context.GetComponentInChildren<Animator>();
         controller = context.GetComponent<CharacterController>();
         agent = context.GetComponent<NavMeshAgent>();
     }
@@ -26,14 +26,14 @@ public class MoveToWaypoint : State<ZombieController>
         if (context.targetWaypoint)
         {
             agent?.SetDestination(context.targetWaypoint.position);
-            anim?.SetBool(hashMove, true);
+           anim?.SetBool(hashMove, true);
         }   
     }
 
     public override void Update(float deltaTime)
     {
         Transform enemy = context.SearchEnemy();
-
+        Debug.Log("Update");
         if (enemy)
         {
             if (context.IsAvailableAttack)
@@ -49,10 +49,11 @@ public class MoveToWaypoint : State<ZombieController>
         }
         else
         {
+            Debug.Log("이동");
             if (!agent.pathPending && (agent.remainingDistance <= agent.stoppingDistance))
             {
                 Transform nextDest = context.FindNextWaypoint();
-
+                Debug.Log("다음 목적지 : " + nextDest);
                 if (nextDest)
                 {
                     agent.SetDestination(nextDest.position);

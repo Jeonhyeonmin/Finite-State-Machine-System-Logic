@@ -10,7 +10,7 @@ public class ZombieController : MonoBehaviour
     public Transform target;
     public float attackRange;
     public Transform[] waypoints;
-    [HideInInspector] public Transform targetWaypoint = null;
+    public Transform targetWaypoint = null;
     private int waypointIndex = 0;
 
     #endregion Variables
@@ -19,7 +19,14 @@ public class ZombieController : MonoBehaviour
 
     private void Start()
     {
+        stateMachine = new StateMachine<ZombieController>(this, new MoveToWaypoint());
+        stateMachine.AddState(new IdleState());
+    }
 
+    private void Update()
+    {
+        stateMachine.Update(Time.deltaTime);
+        Debug.Log(stateMachine.CurrentState);
     }
 
     #region Other Methods
@@ -52,7 +59,7 @@ public class ZombieController : MonoBehaviour
         {
             targetWaypoint = waypoints[waypointIndex];
         }
-
+        Debug.Log("다음 목적지 : " + targetWaypoint);
         waypointIndex = (waypointIndex + 1) % waypoints.Length;
 
         return targetWaypoint;

@@ -8333,7 +8333,7 @@ Transform:
   m_GameObject: {fileID: 1126587685}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9643216, y: -1.0357461, z: -5.582144}
+  m_LocalPosition: {x: 11.009922, y: -1.058331, z: 0.93184805}
   m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11543,10 +11543,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 3.5
-  m_Acceleration: 10
+  m_Speed: 0.65
+  m_Acceleration: 5
   avoidancePriority: 50
-  m_AngularSpeed: 1600
+  m_AngularSpeed: 150
   m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -11567,9 +11567,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d107d6c28aef448afcd49e218564fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1686793469}
+  target: {fileID: 0}
   attackRange: 1.25
-  waypoints: []
+  waypoints:
+  - {fileID: 618185737}
+  - {fileID: 1126587686}
+  - {fileID: 411508942}
   targetWaypoint: {fileID: 0}
 --- !u!1001 &1550837762
 PrefabInstance:
@@ -15331,6 +15334,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 95956356187686518, guid: b7a521fe7dabb734a87b288a49e9b68b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 506e89fcaaff5ee4893fade4641952a2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
