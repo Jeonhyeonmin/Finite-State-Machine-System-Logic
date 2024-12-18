@@ -8,7 +8,7 @@ public class ZombieController : MonoBehaviour
     protected StateMachine<ZombieController> stateMachine;
     public StateMachine<ZombieController> StateMachine => stateMachine;
     
-    public Transform target;
+    public Transform target => fieldOfView?.NearestTarget;
     public float attackRange;
     public Transform[] waypoints;
     public Transform targetWaypoint = null;
@@ -16,6 +16,8 @@ public class ZombieController : MonoBehaviour
 
     private CharacterController controller;
     private NavMeshAgent agent;
+
+    private FieldOfView fieldOfView;
 
     private Vector3 moveVelocity = Vector3.zero;
 
@@ -32,6 +34,9 @@ public class ZombieController : MonoBehaviour
 
     #endregion Ground Check Variables
 
+    [SerializeField] private float patrolStopDistance = 0.1f;
+    [SerializeField] private float attackStopDistance = 0.5f;
+
     #endregion Variables
 
     #region Unity Methods
@@ -40,6 +45,8 @@ public class ZombieController : MonoBehaviour
     {
         stateMachine = new StateMachine<ZombieController>(this, new MoveToWaypoint());
         stateMachine.AddState(new IdleState());
+        stateMachine.AddState(new MoveState());
+        stateMachine.AddState(new AttackState());
 
         controller = GetComponent<CharacterController>();
         agent = GetComponent<NavMeshAgent>();
@@ -48,6 +55,8 @@ public class ZombieController : MonoBehaviour
         {
             ConfigureGroundCheckSettings();
         }
+
+        fieldOfView = GetComponent<FieldOfView>();
     }
 
     private void Update()
@@ -57,6 +66,15 @@ public class ZombieController : MonoBehaviour
 
         GroundCheck();
         controller.Move(moveVelocity * Time.deltaTime);
+
+        if (target != null)
+        {
+            agent.stoppingDistance = attackStopDistance;
+        }
+        else
+        {
+            agent.stoppingDistance = patrolStopDistance;
+        }
     }
 
     private void LateUpdate()
@@ -78,30 +96,33 @@ public class ZombieController : MonoBehaviour
     }
 
     private void GroundCheck()
+{
+    isGrounded = false;
+    float angleStep = 360f / groundCheckCount;
+
+    for (int i = 0; i < groundCheckCount; i++)
     {
-        isGrounded = false;
-        float angleStep = 360f / groundCheckCount;
+        float angle = i * angleStep;
+        Vector3 offset = Quaternion.Euler(0f, angle, 0f) * Vector3.forward * groundCheckOffset + Vector3.down * groundCheckDistance;
+        Vector3 spherePosition = controller.transform.position + offset;
 
-        for (int i = 0; i < groundCheckCount; i++)
+        Debug.DrawRay(spherePosition, Vector3.down * groundCheckDistance, Color.red, 1f);
+
+        if (Physics.CheckSphere(spherePosition, groundCheckRadius, groundLayer, QueryTriggerInteraction.Ignore))
         {
-            float angle = i * angleStep;
-            Vector3 offset = Quaternion.Euler(0f, angle, 0f) * Vector3.forward * groundCheckOffset + Vector3.down * groundCheckDistance;
-            Vector3 spherePosition = agent.transform.position + offset;
-
-            if (Physics.CheckSphere(spherePosition, groundCheckRadius, groundLayer, QueryTriggerInteraction.Ignore))
-            {
-                isGrounded = true;
-                moveVelocity.y = Mathf.MoveTowards(moveVelocity.y, -2f, Mathf.Abs(Physics.gravity.y * Time.deltaTime));
-                break;
-            }
-        }
-
-        if (!isGrounded)
-        {
-            moveVelocity.y += Physics.gravity.y * Time.deltaTime;
-            moveVelocity.y = Mathf.Clamp(moveVelocity.y, Physics.gravity.y, moveVelocity.y);
+            isGrounded = true;
+            Debug.Log("Is Grounded");
+            moveVelocity.y = Mathf.MoveTowards(moveVelocity.y, -2f, Mathf.Abs(Physics.gravity.y * Time.deltaTime));
+            break;
         }
     }
+
+    if (!isGrounded)
+    {
+        moveVelocity.y += Physics.gravity.y * Time.deltaTime;
+        moveVelocity.y = Mathf.Clamp(moveVelocity.y, Physics.gravity.y, moveVelocity.y);
+    }
+}
 
     #region Other Methods
 

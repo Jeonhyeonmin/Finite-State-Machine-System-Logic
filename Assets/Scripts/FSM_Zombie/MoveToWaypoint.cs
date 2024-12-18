@@ -39,12 +39,12 @@ public class MoveToWaypoint : State<ZombieController>
             if (context.IsAvailableAttack)
             {
                 Debug.Log("공격");
-                //stateMachine.ChangeState<AttackState>();
+                stateMachine.ChangeState<AttackState>();
             }
             else
             {
                 Debug.Log("이동");
-                //stateMachine.ChangeState<MoveState>();
+                stateMachine.ChangeState<MoveState>();
             }
         }
         else
