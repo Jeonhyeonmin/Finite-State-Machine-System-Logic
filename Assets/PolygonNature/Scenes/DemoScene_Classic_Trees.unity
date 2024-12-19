@@ -11568,7 +11568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d107d6c28aef448afcd49e218564fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 1.25
+  attackRange: 1.5
   waypoints:
   - {fileID: 618185737}
   - {fileID: 1126587686}
@@ -11583,8 +11583,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  patrolStopDistance: 0.1
-  attackStopDistance: 1.5
+  patrolStopDistance: 0.25
+  attackStopDistance: 1.25
 --- !u!114 &1547089838
 MonoBehaviour:
   m_ObjectHideFlags: 0

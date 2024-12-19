@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EndOfAttackStateMachineBehaviour : StateMachineBehaviour
@@ -18,6 +19,7 @@ public class EndOfAttackStateMachineBehaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
        animator.GetComponentInParent<ZombieController>().StateMachine.ChangeState<IdleState>();
+       animator.GetComponentInParent<ZombieController>().StartFieldOfViewCoroutine();
        Debug.Log("EndOfAttackStateMachineBehaviour");
     }
 

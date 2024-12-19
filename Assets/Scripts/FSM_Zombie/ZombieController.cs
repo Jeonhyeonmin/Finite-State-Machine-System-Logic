@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -136,9 +137,49 @@ public class ZombieController : MonoBehaviour
             }
 
             float distance = Vector3.Distance(transform.position, target.position);
-            Debug.Log("공격 가능 여부 : " + (distance <= attackRange));
             return (distance <= attackRange);
         }
+    }
+
+    public bool IsCheckTargetAngle
+    {
+        get
+        {
+            if (!target)
+            {
+                return false;
+            }
+
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            float angle = Vector3.Angle(transform.forward, dirToTarget);
+
+            if (angle <= 10)
+            {
+                return true;
+            }
+            else
+            {
+                StopCoroutine(transformRotation());
+                StartCoroutine(transformRotation());
+                return false;
+            }
+        }
+    }
+
+    private IEnumerator transformRotation()
+    {
+        while (true)
+        {
+            if (target)
+            {
+                Vector3 dirToTarget = (target.position - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dirToTarget.x, 0, dirToTarget.z));
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 2f * Time.deltaTime);
+            }
+
+            yield return null;
+        }
+        
     }
 
     public Transform SearchEnemy()
@@ -158,6 +199,18 @@ public class ZombieController : MonoBehaviour
         waypointIndex = (waypointIndex + 1) % waypoints.Length;
 
         return targetWaypoint;
+    }
+
+    public void StartFieldOfViewCoroutine()
+    {
+        StopCoroutine(FieldOfViewCoroutine());
+        StartCoroutine(FieldOfViewCoroutine());
+    }
+
+    public IEnumerator FieldOfViewCoroutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+        fieldOfView.viewAngle = 90f;
     }
 
     #endregion Other Methods

@@ -59,7 +59,7 @@ public class MoveToWaypoint : State<ZombieController>
                     agent.SetDestination(nextDest.position);
                 }
 
-                //stateMachine.ChangeState<IdleState>();
+                stateMachine.ChangeState<IdleState>();
             }
             else
             {

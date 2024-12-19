@@ -43,6 +43,12 @@ public class MoveState : State<ZombieController>
             Debug.Log("사정거리 접촉");
             stateMachine.ChangeState<IdleState>();
         }
+
+        if (!enemy)
+        {
+            Debug.Log("적 없음");
+            stateMachine.ChangeState<IdleState>();
+        }
     }
 
     public override void OnExit()
